@@ -1,4 +1,5 @@
 package com.adaysoft;
 
-public class Producer {
+public class Producer extends Thread{
+
 }

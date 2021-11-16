@@ -1,4 +1,5 @@
 package com.adaysoft;
 
-public class Consumer {
+public class Consumer extends Thread{
+
 }
