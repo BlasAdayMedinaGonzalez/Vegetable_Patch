@@ -11,12 +11,12 @@ public class VegetablePatchMonitor {
         this.buffer = new String[capacity];
     }
 
-    public synchronized void put(String c) throws InterruptedException {
+    public synchronized void put(String vegetable) throws InterruptedException {
         while (full) {
             wait();
         }
         System.out.println("Adding valor in space : " + space);
-        buffer[space] = c;
+        buffer[space] = vegetable;
         space += 1;
         empty = false;
         full = space >= buffer.length;
@@ -27,10 +27,10 @@ public class VegetablePatchMonitor {
         while (empty) {
             wait();
         }
-        String c = buffer[--space];
+        String vegetable = buffer[--space];
         System.out.println("Getting valor in space : " + space);
         full = false;
         empty = space <=0;
-        return c;
+        return vegetable;
     }
 }
