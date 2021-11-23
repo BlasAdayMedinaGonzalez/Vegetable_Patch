@@ -2,12 +2,12 @@ package com.adaysoft;
 
 public class Consumer extends Thread{
     private VegetablePatchMonitor buffer;
-    private int expectedUnits;
+    private int consumedUnits;
     private int maxTimeForConsume;
 
-    public Consumer(VegetablePatchMonitor buffer, int expectedUnits, int maxTimeForConsume) {
+    public Consumer(VegetablePatchMonitor buffer, int consumedUnits, int maxTimeForConsume) {
         this.buffer = buffer;
-        this.expectedUnits = expectedUnits;
+        this.consumedUnits = consumedUnits;
         this.maxTimeForConsume = maxTimeForConsume;
     }
 
@@ -15,7 +15,7 @@ public class Consumer extends Thread{
     public void run() {
         String vegetable;
         try {
-            for (int i = 0; i < expectedUnits; i++) {
+            for (int i = 0; i < consumedUnits; i++) {
                 vegetable = buffer.get();
                 System.out.println("Consumed -> " + vegetable);
                 sleep((int) (Math.random() * maxTimeForConsume));

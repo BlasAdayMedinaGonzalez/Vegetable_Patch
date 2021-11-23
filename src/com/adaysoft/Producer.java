@@ -24,10 +24,9 @@ public class Producer extends Thread{
             "green bean"
     };
 
-    public Producer(VegetablePatchMonitor buffer, int produceUnits, int maxTimeForProduce) {
+    public Producer(VegetablePatchMonitor buffer, int produceUnits) {
         this.buffer = buffer;
         this.produceUnits = produceUnits;
-        this.maxTimeForProduce = maxTimeForProduce;
     }
 
     @Override
@@ -37,7 +36,8 @@ public class Producer extends Thread{
                 int randomNum = (int) (Math.random() * vegetables.length);
                 buffer.put(vegetables[randomNum]);
                 System.out.println("Produced -> " + vegetables[randomNum]);
-                sleep((int) (Math.random() * this.maxTimeForProduce));
+                int maxTimeForGrow = (int) (Math.random() * 1000);
+                sleep((int) (Math.random() * maxTimeForGrow));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
