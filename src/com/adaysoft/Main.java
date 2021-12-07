@@ -11,12 +11,24 @@ public class Main {
         VegetablePatchMonitor vegetablePatchMonitor = new VegetablePatchMonitor(capacity);
         System.out.println("Number max of vegetables produced? ");
         int produceUnits = sc.nextInt();
-        Producer producer = new Producer(vegetablePatchMonitor, produceUnits);
         System.out.println("Number max of vegetables consumed? ");
         int consumedUnits = sc.nextInt();
-        Consumer consumer = new Consumer(vegetablePatchMonitor, consumedUnits, 4000);
 
-        producer.start();
-        consumer.start();
+
+        System.out.println("How many people for produce?");
+        int countofProducers = sc.nextInt();
+        System.out.println("How many people for consume?");
+        int countofConsumers = sc.nextInt();
+
+        for (int i = 0; i < countofProducers; i++) {
+            Producer producer = new Producer(i, vegetablePatchMonitor, produceUnits);
+            producer.start();
+        }
+
+        for (int i = 0; i < countofConsumers; i++) {
+            Consumer consumer = new Consumer(i,vegetablePatchMonitor, consumedUnits, 4000);
+            consumer.start();
+        }
+
     }
 }

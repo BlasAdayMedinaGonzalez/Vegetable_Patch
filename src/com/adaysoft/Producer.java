@@ -5,6 +5,7 @@ public class Producer extends Thread{
 
     private int produceUnits;
     private int maxTimeForGrow;
+    private int idProducer;
 
     private static String vegetables [] = {
             "lettuce",
@@ -24,7 +25,8 @@ public class Producer extends Thread{
             "green bean"
     };
 
-    public Producer(VegetablePatchMonitor buffer, int produceUnits) {
+    public Producer(int idProducer, VegetablePatchMonitor buffer, int produceUnits) {
+        this.idProducer = idProducer;
         this.buffer = buffer;
         this.produceUnits = produceUnits;
     }
@@ -37,7 +39,7 @@ public class Producer extends Thread{
                 maxTimeForGrow = (int) (1000 + (Math.random() * 10000));
                 sleep((int) (Math.random() * maxTimeForGrow));
                 buffer.put(vegetables[randomNum]);
-                System.out.println("Produced -> " + vegetables[randomNum]);
+                System.out.println(idProducer +": Produced -> " + vegetables[randomNum]);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
