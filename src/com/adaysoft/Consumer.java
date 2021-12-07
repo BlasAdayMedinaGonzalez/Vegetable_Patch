@@ -16,9 +16,9 @@ public class Consumer extends Thread{
         String vegetable;
         try {
             for (int i = 0; i < consumedUnits; i++) {
+                sleep(maxTimeForConsume);
                 vegetable = buffer.get();
                 System.out.println("Consumed -> " + vegetable);
-                sleep((int) (Math.random() * maxTimeForConsume));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

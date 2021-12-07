@@ -15,9 +15,8 @@ public class VegetablePatchMonitor {
         while (full) {
             wait();
         }
-        System.out.println("Adding valor in space : " + space);
-        buffer[space] = vegetable;
-        space += 1;
+        System.out.println("Planting in space : " + space);
+        buffer[space++] = vegetable;
         empty = false;
         full = space >= buffer.length;
         notifyAll();
